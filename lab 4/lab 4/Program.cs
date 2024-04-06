@@ -1,11 +1,10 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
-
-class RomanToInteger
-{
+class Numbers
+{ 
     public int RomanToInt(string s)
     {
-        Dictionary<char, int> romanValues = new Dictionary<char, int>()
+        Dictionary<char, int> Rim = new Dictionary<char, int>()
         {
             {'I', 1},
             {'V', 5},
@@ -17,13 +16,13 @@ class RomanToInteger
         };
 
         int result = 0;
-        int prevValue = 0;
+        int pred = 0;
 
         for (int i = s.Length - 1; i >= 0; i--)
         {
-            int value = romanValues[s[i]];
+            int value = Rim[s[i]];
 
-            if (value < prevValue)
+            if (value < pred)
             {
                 result -= value;
             }
@@ -32,7 +31,7 @@ class RomanToInteger
                 result += value;
             }
 
-            prevValue = value;
+            pred = value;
         }
 
         return result;
@@ -40,10 +39,10 @@ class RomanToInteger
 
     static void Main()
     {
-        RomanToInteger converter = new RomanToInteger();
+        Numbers converter = new Numbers();
 
         Console.WriteLine("Введите римское число для преобразования в целое число:");
-        string input = Console.ReadLine().ToUpper(); // Преобразуем введенную строку в верхний регистр
+        string input = Console.ReadLine().ToUpper(); 
 
         int result = converter.RomanToInt(input);
         Console.WriteLine($"Результат преобразования: {result}");

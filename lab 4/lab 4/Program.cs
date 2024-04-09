@@ -4,7 +4,7 @@ class Numbers
 { 
     public int RomanToInt(string s)
     {
-        Dictionary<char, int> Rim = new Dictionary<char, int>()
+        Dictionary<char, int> RomeNum = new Dictionary<char, int>()
         {
             {'I', 1},
             {'V', 5},
@@ -16,13 +16,13 @@ class Numbers
         };
 
         int result = 0;
-        int pred = 0;
+        int prev = 0;
 
         for (int i = s.Length - 1; i >= 0; i--)
         {
-            int value = Rim[s[i]];
+            int value = RomeNum[s[i]];
 
-            if (value < pred)
+            if (value < prev)
             {
                 result -= value;
             }
@@ -31,7 +31,7 @@ class Numbers
                 result += value;
             }
 
-            pred = value;
+            prev = value;
         }
 
         return result;
